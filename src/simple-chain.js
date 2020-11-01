@@ -11,6 +11,7 @@ const chainMaker = {
   },
   removeLink(position) {
     if (typeof position !== 'number' || position < 1 || position > this.values.length - 1) {
+      this.values = [];
       throw 'THROWN';
     }
     this.values.splice(position - 1, 1);
@@ -21,7 +22,9 @@ const chainMaker = {
     return this;
   },
   finishChain() {
-    return this.values.map(el => `( ${el} )`).join('~~')
+    const res = this.values.map(el => `( ${el} )`).join('~~');
+    this.values = [];
+    return res;
   }
 };
 
