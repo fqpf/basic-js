@@ -1,12 +1,8 @@
 const CustomError = require("../extensions/custom-error");
 
-function isValidDate(d) {
-  return d instanceof Date && !isNaN(d) && d.toString() === '[object Date]';
-}
-
 module.exports = function getSeason(date) {
     if (!date) return 'Unable to determine the time of year!';
-    if (!isValidDate(date)) {
+    if (isNaN(date)) {
       return 'THROWN';
     }
     const numOfMonth = date.getMonth();
